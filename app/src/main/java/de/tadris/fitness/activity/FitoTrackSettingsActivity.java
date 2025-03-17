@@ -39,6 +39,7 @@ import androidx.annotation.StringRes;
 import de.tadris.fitness.Instance;
 import de.tadris.fitness.R;
 import de.tadris.fitness.util.unit.UnitUtils;
+import de.tadris.fitness.util.DialogUtils;
 
 public abstract class FitoTrackSettingsActivity extends PreferenceActivity {
 
@@ -48,12 +49,8 @@ public abstract class FitoTrackSettingsActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
     }
 
-    protected void showErrorDialog(Exception e, @StringRes int title, @StringRes int message) {
-        new AlertDialog.Builder(this)
-                .setTitle(title)
-                .setMessage(getString(message) + "\n\n" + e.getMessage())
-                .setPositiveButton(R.string.okay, null)
-                .create().show();
+    private void handleException(Exception e) {
+        DialogUtils.showErrorDialog(this, e, R.string.error_title, R.string.error_message);
     }
 
     /**
